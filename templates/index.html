@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+     Home
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(symbols|length) %}
+                <tr>
+                    <td>{{ symbols[i] }}</td>
+                    <td>{{ stock_names[i] }}</td>
+                    <td>{{ shares[i] }}</td>
+                    <td>{{ "${:,.2f}".format(prices[i]) }}</td>
+                    <td>{{ "${:,.2f}".format(totals[i]) }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" id="cAsH">CASH</td>
+                <td>{{ "${:,.2f}".format(cash_reserves) }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td><strong>{{ "${:,.2f}".format(net_worth) }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}
